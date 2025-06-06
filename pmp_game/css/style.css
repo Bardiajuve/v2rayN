@@ -1,0 +1,30 @@
+body {
+  font-family: sans-serif;
+  direction: rtl;
+  margin: 20px;
+}
+header {
+  text-align: center;
+}
+#options button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+#kpis {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+}
+#feedback {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #333;
+  display: none;
+}
+.hidden { display: none; }
