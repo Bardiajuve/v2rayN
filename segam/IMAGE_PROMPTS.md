@@ -16,6 +16,15 @@
 | `images/cat-street.jpg` | ۳:۴ | `Chunky platform street sneakers in cream and green on urban pavement, golden hour, vertical composition, no logos` |
 | `images/about-factory.jpg` | ۴:۵ | `Inside a clean modern shoe factory in Iran, workers stitching sneakers, rows of lasts and sole molds, warm light, documentary photo` |
 
+## ۱-ب) تصاویر سینمایی (تأثیر زیادی روی جذابیت سایت دارند)
+| فایل | نسبت | پرامپت |
+|---|---|---|
+| `images/hero.png` (PNG شفاف، **مهم‌ترین عکس**) | ۱:۱ | `Hero shot of a premium black and white high-top basketball sneaker floating at dynamic 3/4 angle, cinematic rim lighting with blue accent, dramatic shadows, isolated on transparent background, no logos` |
+| `images/hero.mp4` (اختیاری، ویدیوی پس‌زمینه ۵ تا ۸ ثانیه، بی‌صدا، حلقه‌ای) | ۱۶:۹ | `Slow cinematic dolly shot around a sneaker on a dark studio floor, volumetric blue light beams, floating dust particles, shallow depth of field, seamless loop, 4k` |
+| `images/story-1.jpg` | ۴:۵ | `Close-up of craftsman cutting leather pattern for sneakers on a workbench, moody dramatic lighting, cinematic, shallow depth of field` |
+| `images/story-2.jpg` | ۴:۵ | `Macro shot of sneaker sole molds and stitching machine, sparks of warm light, dark industrial atmosphere, cinematic` |
+| `images/story-3.jpg` | ۴:۵ | `Neatly stacked shoe cartons being loaded into a delivery van at dawn, blue hour, cinematic lighting` |
+
 ## ۲) عکس محصولات
 برای هر مدل ۳ عکس: `images/products/<slug>/1.jpg` (۳/۴ جلو)، `2.jpg` (نمای کنار)، `3.jpg` (کف یا بالا). مربعی ۱۰۰۰×۱۰۰۰ بهتر است.
 قالب پرامپت: `<توضیح مدل> sneaker, <زاویه>, on light warm-grey seamless background, <استایل مشترک>`

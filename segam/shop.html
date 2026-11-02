@@ -9,15 +9,16 @@
 <link rel="icon" href="images/logo.png">
 <link rel="preload" href="fonts/Vazirmatn.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cinema.css">
 </head>
 <body data-page="shop">
 <div id="site-header"></div>
 <main>
 
 <div class="wrap">
- <div class="phead"><div class="crumb"><a href="index.html">خانه</a> / محصولات</div><h1>کاتالوگ <em>عمده</em></h1><p>قیمت‌ها برای هر جفت و بر اساس خرید کارتنی (۱۲ جفت) است.</p></div>
+ <div class="phead"><div class="crumb"><a href="index.html">خانه</a> / محصولات</div><h1>کاتالوگ <em>عمده</em></h1><p>فروش کارتنی (۱۲ جفت)؛ برای قیمت عمده هر مدل استعلام بگیرید.</p></div>
  <div class="toolbar"><div class="search"><input id="q" placeholder="جستجوی مدل..." aria-label="جستجو"></div>
-  <select class="sel" id="sort" aria-label="مرتب‌سازی"><option value="def">مرتب‌سازی: پیش‌فرض</option><option value="lo">ارزان‌ترین</option><option value="hi">گران‌ترین</option></select></div>
+  <select class="sel" id="sort" aria-label="مرتب‌سازی"><option value="def">مرتب‌سازی: پیش‌فرض</option><option value="hot">پرفروش و جدید اول</option></select></div>
  <div class="chips" id="fCat"></div><div class="chips" id="fSole"></div><div class="chips" id="fGender"></div>
  <div class="count" id="count"></div>
  <div class="grid" id="list" style="padding-bottom:80px"></div>
@@ -26,5 +27,6 @@
 <div id="site-footer"></div>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
+<script src="js/cinema.js"></script>
 </body>
 </html>
