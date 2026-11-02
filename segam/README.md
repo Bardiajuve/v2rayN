@@ -13,3 +13,8 @@ cd segam && python3 -m http.server 8000   # سپس http://localhost:8000
 - عکس‌ها: `images/` طبق `IMAGE_PROMPTS.md`
 - فونت: فایل `Vazirmatn.woff2` را در `fonts/` بگذارید (اختیاری؛ در غیر این صورت فونت سیستم)
 - سفارش‌ها از طریق واتساپ مدیر فروش ارسال می‌شود (`whatsapp` در data.js).
+
+## سه‌بعدی
+- موتور: three.js (لوکال در `js/vendor`) — کفش پروسیجرال در `js/shoe3d.js`، صحنه اسکرولی صفحه خانه در `js/home3d.js`، ویوئر محصول در `js/viewer3d.js`.
+- برای مدل واقعی: `models/shoe.glb`.
+- نیاز به مرورگر با WebGL؛ در غیر این صورت سایت بدون ۳D نمایش داده می‌شود.

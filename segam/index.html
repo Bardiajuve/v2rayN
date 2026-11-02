@@ -10,13 +10,13 @@
 <link rel="preload" href="fonts/Vazirmatn.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/cinema.css">
+<script type="importmap">{"imports":{"three":"./js/vendor/three.module.js","three/addons/":"./js/vendor/jsm/"}}</script>
 </head>
 <body data-page="home">
 <div id="site-header"></div>
 <main>
 
 <section class="hero2" id="hero">
-  <video class="hv" src="images/hero.mp4" autoplay muted loop playsinline preload="metadata" onerror="this.remove()"></video>
   <i class="hbeam"></i><i class="hbeam b2"></i><div class="h3" aria-hidden="true">۳</div>
   <div class="wrap hgrid">
     <div class="htext">
@@ -25,7 +25,7 @@
       <p class="lead">گروه تولیدی کفش سه‌گام؛ بیش از ۴ دهه تجربه. کتونی و کفش اسپرت، مستقیم از کارخانه به فروشگاه شما.</p>
       <div class="cta"><a class="btn btn-acc" href="shop.html">کاتالوگ عمده ←</a><a class="btn btn-line" href="tel:09126779887">استعلام قیمت از مدیر فروش</a></div>
     </div>
-    <div class="hshoe"><div class="ring"></div><div class="floor"></div><img id="heroShoe" src="images/hero.png" alt="کفش سه‌گام"><div class="sticker">ارسال<br>همان روز</div></div>
+    <div class="hshoe"><div class="hint">با موس بچرخانید · اسکرول کنید</div><div class="sticker">ارسال<br>همان روز</div></div>
   </div>
   <div class="cue"><span>SCROLL</span><i></i></div>
 </section>
@@ -39,18 +39,15 @@
 
 <section class="story" id="story">
   <div class="pin"><div class="big" aria-hidden="true">۱</div>
-    <div class="sdots"><i class="on"></i><i></i><i></i></div>
+    <div class="sdots"><i class="on"></i><i></i><i></i><i></i></div>
     <div class="wrap grid2">
       <div class="scenes">
-        <div class="scene on"><div class="no">۱</div><h3>طراحی و برش</h3><p>هر مدل از الگوی دقیق شروع می‌شود؛ مواد اولیه درجه‌یک انتخاب و با دقت برش می‌خورد.</p></div>
-        <div class="scene"><div class="no">۲</div><h3>دوخت و زیره</h3><p>چهار نوع زیره PU، EVA، ایربولینگ و PVC؛ از سبک و نرم تا مقاوم و ضدسایش.</p></div>
-        <div class="scene"><div class="no">۳</div><h3>ارسال همان روز</h3><p>کالاهای موجود همان روز راهی فروشگاه شما می‌شوند؛ نهایتاً ۱ هفته کاری.</p></div>
+        <div class="scene on"><div class="no">۱</div><h3>رویه با دوخت دقیق</h3><p>چرم مصنوعی درجه‌یک یا پارچه تنفس‌پذیر؛ سه خط امضای سه‌گام روی هر جفت.</p></div>
+        <div class="scene"><div class="no">۲</div><h3>زیره میانی PU و EVA</h3><p>سبک، نرم و برگشت‌پذیر؛ جذب ضربه برای پیاده‌روی طولانی.</p></div>
+        <div class="scene"><div class="no">۳</div><h3>کوسن هوا — ایربولینگ</h3><p>محفظه هوا در پاشنه؛ راحتی تمام‌روز برای مشتری فروشگاه شما.</p></div>
+        <div class="scene"><div class="no">۴</div><h3>زیره PVC ضدسایش</h3><p>آج مقاوم و ضدلغزش؛ بیشترین دوام در مصرف روزانه.</p></div>
       </div>
-      <div class="storyframes">
-        <div class="frame on"><img src="images/story-1.jpg" alt="" onerror="this.remove()"></div>
-        <div class="frame"><img src="images/story-2.jpg" alt="" onerror="this.remove()"></div>
-        <div class="frame"><img src="images/story-3.jpg" alt="" onerror="this.remove()"></div>
-      </div>
+      <div></div>
     </div>
   </div>
 </section>
@@ -109,5 +106,6 @@
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 <script src="js/cinema.js"></script>
+<script type="module" src="js/home3d.js"></script>
 </body>
 </html>

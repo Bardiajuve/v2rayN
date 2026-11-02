@@ -88,8 +88,6 @@
   /* ================= pages ================= */
   if (page === "home") {
     $("#featured").innerHTML = P.map(card).join("");
-    const hs = $("#heroShoe"), fb = () => { hs.onerror = null; hs.src = ph("#ffffff", "none"); };
-    hs.onerror = fb; if (hs.complete && !hs.naturalWidth) fb();
   }
 
   if (page === "shop") {
@@ -119,7 +117,7 @@
   if (page === "product") {
     const p = bySlug(new URLSearchParams(location.search).get("p")) || P[0];
     document.title = `${p.name} | سه‌گام`;
-    let ci = 0, n = D.minCartons, cur = 1;
+    let ci = 0, n = D.minCartons, cur = 0;
     const sizes = (() => {
       const [a, b] = p.sizes.split("-").map(Number), cnt = b - a + 1, base = Math.floor(D.cartonPairs / cnt);
       const arr = []; for (let s = a; s <= b; s++) arr.push([s, base]);
@@ -128,7 +126,7 @@
     })();
     const rel = P.filter(x => x.cat === p.cat && x.slug !== p.slug).concat(P.filter(x => x.cat !== p.cat)).slice(0, 4);
     $("#pd").innerHTML = `
-    <div class="gal"><div class="main" id="gm"></div><div class="th" id="th"></div></div>
+    <div class="gal"><div class="v3d" id="v3d"></div><div class="main" id="gm" style="display:none"></div><div class="th" id="th"></div></div>
     <div class="pinfo">
       <div class="crumb"><a href="index.html">خانه</a> / <a href="shop.html?cat=${p.cat}">${D.cats[p.cat]}</a></div>
       ${p.tag ? `<span class="eyebrow">${p.tag}</span>` : ""}
@@ -148,8 +146,10 @@
     $("#related").innerHTML = rel.map(card).join("");
     const paint = () => {
       const c = p.colors[ci][1];
-      $("#gm").innerHTML = imgTag(imgSrc(p, cur), c, "", p.name);
-      $("#th").innerHTML = [1, 2, 3].map(i => `<button class="${i === cur ? "on" : ""}" data-i="${i}">${imgTag(imgSrc(p, i), c)}</button>`).join("");
+      $("#gm").innerHTML = imgTag(imgSrc(p, cur || 1), c, "", p.name);
+      $("#gm").style.display = cur ? "" : "none"; $("#v3d").style.display = cur ? "none" : "";
+      dispatchEvent(new CustomEvent("sg:color", { detail: p.colors[ci][1] }));
+      $("#th").innerHTML = `<button class="${cur === 0 ? "on" : ""}" data-i="0" style="font-weight:900;color:var(--lime);font-size:20px">3D</button>` + [1, 2, 3].map(i => `<button class="${i === cur ? "on" : ""}" data-i="${i}">${imgTag(imgSrc(p, i), c)}</button>`).join("");
       $("#cn").textContent = p.colors[ci][0];
       $("#pairs").textContent = fa(n * D.cartonPairs);
       $("#qn").value = fa(n);

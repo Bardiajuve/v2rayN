@@ -175,3 +175,27 @@ header.site,main,footer.site{position:relative;z-index:2}
 .story .pin>.wrap{width:100%}.story .scenes{min-width:0}
 .marquee{background:#000}
 .marquee .track{color:#fff}
+
+/* ---------- WebGL layer ---------- */
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+header.site{position:sticky;top:0;z-index:50}
+main,footer.site{position:relative;z-index:2}
+.hero2 .hv{display:none}
+body.has-gl .hero2::before{background:radial-gradient(ellipse 50% 55% at 24% 55%,rgba(47,134,208,.30),transparent 70%),radial-gradient(ellipse 40% 40% at 85% 8%,rgba(212,255,58,.09),transparent 70%)}
+body.has-gl .hero2::after{background:linear-gradient(to top,var(--bone),transparent 14%)}
+.story .pin{background:none}
+.story .big{inset-inline-end:auto;inset-inline-start:-2%}
+.hshoe .hint{position:absolute;bottom:6%;inset-inline-start:50%;translate:50% 0;color:#8f95a0;font-size:14px;letter-spacing:.08em;white-space:nowrap}
+.hshoe .sticker{inset-inline-start:auto;inset-inline-end:2%}
+.hshoe{height:min(70vh,640px)}
+.v3d{aspect-ratio:1;border-radius:24px;border:2px solid #2b2f38;background:radial-gradient(circle at 50% 38%,#16406a,#07090d 72%);position:relative;overflow:hidden;cursor:grab}
+.v3d.drag{cursor:grabbing}.v3d canvas{width:100%;height:100%;display:block}
+.v3d .tools{position:absolute;inset-inline:16px;bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;pointer-events:none}
+.v3d .tools span{font-size:13px;color:#8f95a0}
+.v3d .tools button{pointer-events:auto;background:#0d1014cc;border:1px solid #3a3f4a;color:#fff;padding:8px 16px;border-radius:99px;font-weight:700;font-size:14px;backdrop-filter:blur(6px)}
+.v3d .tools button.on,.v3d .tools button:hover{background:var(--lime);color:#000;border-color:var(--lime)}
+.gal .th button{color:#fff}
+.hshoe .sticker{animation:none;transform:rotate(-12deg);top:8%}
+
+.gal .th button{background:#14171c}.gal .th button:first-child{display:grid;place-items:center}
+@media(max-width:900px){.hshoe .sticker{display:none}.hshoe .hint{bottom:0}}
