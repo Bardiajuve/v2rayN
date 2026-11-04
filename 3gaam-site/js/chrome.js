@@ -4,7 +4,7 @@ const gsap = window.gsap;
 export function initGrain() {
   const c = document.createElement('canvas'); c.width = c.height = 180;
   const x = c.getContext('2d'), im = x.createImageData(180, 180);
-  for (let i = 0; i < im.data.length; i += 4) { const v = Math.random() * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; }
+  for (let i = 0; i < im.data.length; i += 4) { const v = Math.random() > .5 ? 255 : 0; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = Math.random() * 15; }
   x.putImageData(im, 0, 0);
   $('#grain').style.backgroundImage = `url(${c.toDataURL()})`;
 }

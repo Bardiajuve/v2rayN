@@ -85,7 +85,59 @@
           "d": "دوام بالا در محل اتصال‌ها"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g02.webp",
+          "w": 820,
+          "h": 899
+        },
+        {
+          "src": "assets/gallery/g01.webp",
+          "w": 820,
+          "h": 899
+        },
+        {
+          "src": "assets/gallery/g16.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g20.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g62.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g19.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g03.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g04.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g23.webp",
+          "w": 820,
+          "h": 1026
+        },
+        {
+          "src": "assets/gallery/g37.webp",
+          "w": 820,
+          "h": 1025
+        }
+      ]
     },
     {
       "slug": "air-force-1-low-pastel",
@@ -162,7 +214,34 @@
           "d": "دوام بالا در محل اتصال‌ها"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g17.webp",
+          "w": 820,
+          "h": 820
+        },
+        {
+          "src": "assets/gallery/g47.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g64.webp",
+          "w": 820,
+          "h": 1099
+        },
+        {
+          "src": "assets/gallery/g60.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g24.webp",
+          "w": 733,
+          "h": 1100
+        }
+      ]
     },
     {
       "slug": "air-force-1-suede",
@@ -222,7 +301,19 @@
           "d": "دوام بالا در محل اتصال‌ها"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g21.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g32.webp",
+          "w": 820,
+          "h": 1025
+        }
+      ]
     },
     {
       "slug": "air-force-1-mid",
@@ -282,7 +373,24 @@
           "d": "مقاوم در برابر سایش"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g31.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g39.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g24.webp",
+          "w": 733,
+          "h": 1100
+        }
+      ]
     },
     {
       "slug": "air-jordan-1-high",
@@ -523,7 +631,64 @@
           "d": "سطح صاف و مقاوم در برابر خراش"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g07.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g25.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g13.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g49.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g33.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g28.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g34.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g59.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g22.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g40.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g09.webp",
+          "w": 820,
+          "h": 1025
+        }
+      ]
     },
     {
       "slug": "go-walk-knit",
@@ -629,7 +794,49 @@
           "d": "پوشیدن سریع بدون بند"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g15.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g42.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g38.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g29.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g11.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g36.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g44.webp",
+          "w": 820,
+          "h": 1026
+        },
+        {
+          "src": "assets/gallery/g57.webp",
+          "w": 820,
+          "h": 1025
+        }
+      ]
     },
     {
       "slug": "knit-lite",
@@ -705,7 +912,24 @@
           "d": "تنظیم سریع روی پا"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g51.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g10.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g41.webp",
+          "w": 619,
+          "h": 1100
+        }
+      ]
     },
     {
       "slug": "ultra-go-lace",
@@ -765,7 +989,24 @@
           "d": "پوشیدن راحت‌تر"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g05.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g27.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g63.webp",
+          "w": 820,
+          "h": 1025
+        }
+      ]
     },
     {
       "slug": "runner-9060",
@@ -825,7 +1066,24 @@
           "d": "کوسن هوا؛ جذب ضربه"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g52.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g06.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g43.webp",
+          "w": 820,
+          "h": 1025
+        }
+      ]
     },
     {
       "slug": "propulsion-runner",
@@ -909,7 +1167,39 @@
           "d": "پوشیدن راحت‌تر"
         }
       ],
-      "sizes": null
+      "sizes": null,
+      "gallery": [
+        {
+          "src": "assets/gallery/g14.webp",
+          "w": 619,
+          "h": 1100
+        },
+        {
+          "src": "assets/gallery/g35.webp",
+          "w": 734,
+          "h": 1100
+        },
+        {
+          "src": "assets/gallery/g45.webp",
+          "w": 820,
+          "h": 1024
+        },
+        {
+          "src": "assets/gallery/g46.webp",
+          "w": 820,
+          "h": 1025
+        },
+        {
+          "src": "assets/gallery/g58.webp",
+          "w": 619,
+          "h": 1100
+        },
+        {
+          "src": "assets/gallery/g50.webp",
+          "w": 820,
+          "h": 1025
+        }
+      ]
     }
   ]
 }

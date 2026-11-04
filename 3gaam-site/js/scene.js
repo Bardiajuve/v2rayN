@@ -3,6 +3,7 @@ import { DB, inquiry } from './state.js';
 import { setTheme } from './bg.js';
 import { toast } from './chrome.js';
 import { openDrawer } from './drawer.js';
+import { openGallery } from './gallery.js';
 const gsap = window.gsap;
 
 const view = $('#v-scene'), stage = $('#sc-stage'), wrap = $('#sc-wrap'), tilt = $('#sc-tilt'), floatEl = $('#sc-float'), box = $('#sc-box');
@@ -111,6 +112,7 @@ function fillPanel(p, c) {
   sw.style.display = p.colors.length > 1 ? '' : 'none';
   $('#p-color-name').textContent = c.name;
   $('#p-add').disabled = false;
+  const g = p.gallery || []; $('#p-gal').hidden = !g.length; $('#p-gal-n').textContent = fa(g.length);
 }
 function setQty(n) {
   qty = clamp(n, DB.carton.min, 99);
@@ -158,56 +160,77 @@ function ghostOf(node) {
   g.style.pointerEvents = 'none'; return g;
 }
 
+const ready = new Set();
+function ensure(src) { return ready.has(src) ? Promise.resolve() : loadImg(src).then(() => ready.add(src)); }
+let queued = null;
+const PANEL_SEL = '.p-top,.p-fa,.p-en,.p-desc,.p-specs,.p-colors,.p-order,#p-add,.p-gal,.p-note';
+
 async function go(n, dir = 1, opts = {}) {
   const N = P.length; n = ((n % N) + N) % N;
-  if (busy || (n === idx && !opts.force)) return;
+  if (n === idx && !opts.force) return;
+  if (busy) { queued = { n, dir }; return; }          // rapid presses are queued, never dropped
   busy = true; const my = ++token;
   const first = opts.first, vw = innerWidth;
   const p = P[n], startColor = opts.color != null ? Math.max(0, p.colors.findIndex(c => c.id === opts.color)) : 0;
   const c0 = p.colors[startColor];
-  await Promise.all(p.colors.map(c => loadImg(c.image)));
+  if (!ready.has(c0.image)) await ensure(c0.image);
 
-  // ghosts of the outgoing state
+  // ghosts of the outgoing state (cloned from wherever the shoe currently is, even mid-flight)
   let ghost = null, ghostName = null;
   if (!first && !opts.fromRect) {
     ghost = ghostOf(wrap); wrap.after(ghost);
     ghostName = ghostOf(nameT); ghostName.style.position = 'absolute'; nameWrap.append(ghostName);
-    gsap.set(ghost, { x: gsap.getProperty(wrap, 'x'), y: gsap.getProperty(wrap, 'y') });
   }
+  gsap.killTweensOf([wrap, nameT, shadow, tilt]);
   stopIdle(); clearCallouts(true);
-  gsap.to($$('.p-top,.p-fa,.p-en,.p-desc,.p-specs,.p-colors,.p-order,#p-add,.p-note', panel), { opacity: 0, y: -12, duration: d(.22), stagger: .015, ease: 'power2.in' });
+  gsap.to($$(PANEL_SEL, panel), { opacity: 0, y: -10, duration: d(.16), stagger: .008, ease: 'power2.in', overwrite: true });
 
-  // swap content
+  // swap content right away: the old shoe is already a ghost
   idx = n; ci = startColor; fit(p); fitName(p);
   imgs[0].src = c0.image; imgs[0].alt = `${p.fa} — رنگ ${c0.name}`; gsap.set(imgs[0], { opacity: 1, scale: 1, rotation: 0 }); gsap.set(imgs[1], { opacity: 0 });
-  await new Promise(r => gsap.delayedCall(d(.2), r));
-  fillPanel(p, c0); syncSheet();
-  setTheme(c0.theme, first ? 1.6 : 1.15);
+  gsap.set(wrap, { clearProps: 'transform,opacity' }); gsap.set(nameT, { clearProps: 'transform,opacity' });
+  setTheme(c0.theme, first ? 1.6 : 1.0);
   setUrl();
-  gsap.fromTo($$('.p-top,.p-fa,.p-en,.p-desc,.p-specs,.p-colors,.p-order,#p-add,.p-note', panel), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: d(1), stagger: .055, ease: 'expo.out', delay: first ? .5 : .25 });
+  gsap.delayedCall(d(.14), () => {
+    if (my !== token) return;
+    fillPanel(p, c0); syncSheet();
+    gsap.fromTo($$(PANEL_SEL, panel), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: d(.9), stagger: .045, ease: 'expo.out', overwrite: true });
+  });
   $$('#sc-rail button').forEach((b, k) => b.setAttribute('aria-selected', k === n));
   $('#sc-rail button[aria-selected=true]')?.scrollIntoView?.({ block: 'nearest', inline: 'center', behavior: RM ? 'auto' : 'smooth' });
 
   const tl = gsap.timeline({ onComplete: () => { if (my === token) { startIdle(); renderCallouts(); } } });
+  const rm = () => { /* ghosts are removed by their own tweens */ };
   if (ghost) {
-    tl.to(ghost, { x: `+=${dir * vw * .8}`, rotation: dir * 16, scale: .82, opacity: 0, duration: d(.6), ease: 'power3.in', onComplete: () => ghost.remove() }, 0);
-    tl.to(ghostName, { x: dir * vw * .4, opacity: 0, duration: d(.6), ease: 'power3.in', onComplete: () => ghostName.remove() }, 0);
+    const x0 = gsap.getProperty(ghost, 'x') || 0;
+    tl.to(ghost, { x: x0 + dir * vw * .85, rotation: dir * 14, scale: .88, opacity: 0, duration: d(.62), ease: 'power3.in', force3D: true, onComplete: () => ghost.remove() }, 0);
+    tl.to(ghostName, { x: dir * vw * .38, opacity: 0, duration: d(.6), ease: 'power3.in', onComplete: () => ghostName.remove() }, 0);
   }
-  if (opts.fromRect) {                                       // shared-element zoom from the wall
-    gsap.set(wrap, { clearProps: 'transform' });
+  if (opts.fromRect) {                                       // shared-element zoom (wall / entry orbit)
     const r = wrap.getBoundingClientRect(), f = opts.fromRect;
     const s = f.width / r.width;
-    tl.fromTo(wrap, { x: f.left + f.width / 2 - (r.left + r.width / 2), y: f.top + f.height / 2 - (r.top + r.height / 2), scale: s, opacity: 1, rotation: 0 }, { x: 0, y: 0, scale: 1, rotation: 0, duration: d(1.25), ease: 'expo.inOut' }, 0);
+    tl.fromTo(wrap, { x: f.left + f.width / 2 - (r.left + r.width / 2), y: f.top + f.height / 2 - (r.top + r.height / 2), scale: s, opacity: 1, rotation: 0 }, { x: 0, y: 0, scale: 1, rotation: 0, duration: d(1.25), ease: 'expo.inOut', force3D: true }, 0);
     tl.fromTo(nameT, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: d(1.2), ease: 'expo.out' }, .35);
   } else if (first) {
-    tl.fromTo(wrap, { scale: .35, y: 140, rotation: -14, opacity: 0 }, { scale: 1, y: 0, rotation: 0, opacity: 1, duration: d(1.6), ease: 'expo.out' }, .1);
+    tl.fromTo(wrap, { scale: .35, y: 140, rotation: -14, opacity: 0 }, { scale: 1, y: 0, rotation: 0, opacity: 1, duration: d(1.6), ease: 'expo.out', force3D: true }, .1);
     tl.fromTo(nameT, { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: d(1.6), ease: 'expo.out' }, 0);
   } else {
-    tl.fromTo(wrap, { x: -dir * vw * .7, rotation: -dir * 18, scale: .86, opacity: 0, y: 0 }, { x: 0, rotation: 0, scale: 1, opacity: 1, duration: d(1.3), ease: 'expo.out' }, .16);
-    tl.fromTo(nameT, { x: -dir * vw * .32, opacity: 0, scale: 1 }, { x: 0, opacity: 1, duration: d(1.25), ease: 'expo.out' }, .12);
+    tl.fromTo(wrap, { x: -dir * vw * .75, rotation: -dir * 16, scale: .9, opacity: 0, y: 0 }, { x: 0, rotation: 0, scale: 1, opacity: 1, duration: d(1.1), ease: 'expo.out', force3D: true }, .1);
+    tl.fromTo(nameT, { x: -dir * vw * .3, opacity: 0 }, { x: 0, opacity: 1, duration: d(1.05), ease: 'expo.out' }, .08);
   }
-  tl.fromTo(shadow, { opacity: 0 }, { opacity: 1, duration: d(.8) }, .5);
-  gsap.delayedCall(d(opts.fromRect ? .9 : .65), () => { busy = false; });
+  tl.fromTo(shadow, { opacity: 0 }, { opacity: 1, duration: d(.7) }, .45);
+  gsap.delayedCall(d(opts.fromRect ? .9 : .38), () => {
+    busy = false;
+    if (queued) { const q = queued; queued = null; go(q.n, q.dir); }
+  });
+}
+
+/* load every product image once, in the background, so a swap never waits on the network */
+function warm() {
+  const all = DB.flat.map(c => c.image);
+  let i = 0;
+  const step = () => { if (i >= all.length) return; ensure(all[i++]).then(() => (window.requestIdleCallback ? requestIdleCallback(step, { timeout: 400 }) : setTimeout(step, 60))); };
+  step();
 }
 
 /* ---------- public ---------- */
@@ -226,6 +249,8 @@ export const scene = {
     $('#st-minus').onclick = () => setQty(qty - 1); $('#st-plus').onclick = () => setQty(qty + 1);
     $('#p-swatches').addEventListener('click', e => { const b = e.target.closest('.sw'); if (b && +b.dataset.i !== ci) showColor(+b.dataset.i); });
     $('#p-add').onclick = addToList;
+    $('#p-gal').onclick = () => openGallery(prod());
+    warm();
     gsap.set(tilt, { transformPerspective: 1000 });
 
     // wheel
@@ -240,7 +265,7 @@ export const scene = {
 
     // keys
     addEventListener('keydown', e => {
-      if (!live || !$('#drawer').hidden || e.target.closest('input,textarea')) return;
+      if (!live || !$('#drawer').hidden || !$('#gal').hidden || e.target.closest('input,textarea')) return;
       if (e.key === 'ArrowLeft' || e.key === 'PageDown') { e.preventDefault(); this.next(1); }
       else if (e.key === 'ArrowRight' || e.key === 'PageUp') { e.preventDefault(); this.next(-1); }
     });
@@ -283,7 +308,7 @@ export const scene = {
     new ResizeObserver(syncSheet).observe(panel);
   },
 
-  next(dir, o) { if (busy) return; go(idx + dir, dir, o); },
+  next(dir, o) { go((queued ? queued.n : idx) + dir, dir, o); },
   goTo(i) { if (i === idx) return; go(i, i > idx ? 1 : -1); },
   relayout() { fit(prod()); fitName(prod()); syncSheet(); renderCallouts(); },
   get slug() { return P[idx]?.slug; },

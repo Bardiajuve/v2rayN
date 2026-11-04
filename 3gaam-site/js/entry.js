@@ -1,57 +1,112 @@
-import { $, $$, RM, FINE, d, clamp } from './util.js';
+import { $, $$, RM, FINE, d, clamp, lerp } from './util.js';
 import { DB } from './state.js';
 const gsap = window.gsap;
 
-/* x,y = centre in % of viewport, w = width in vw (desktop), z = depth −1 (far) … 1 (near), r = base rotation */
-const SLOTS = [
-  { x: 11, y: 24, w: 18, z: .15, r: -12 }, { x: 89, y: 22, w: 16, z: -.35, r: 10 },
-  { x: 22, y: 80, w: 22, z: .85, r: 9 },   { x: 79, y: 77, w: 20, z: .45, r: -9 },
-  { x: 50, y: 9, w: 11, z: -.95, r: 5 },   { x: 51, y: 93, w: 12, z: -.75, r: -7 },
-  { x: 3, y: 54, w: 13, z: -.55, r: 18 },  { x: 97, y: 52, w: 13, z: -.6, r: -16 },
-  { x: 34, y: 31, w: 9.5, z: -.95, r: 14 }, { x: 67, y: 29, w: 9.5, z: -.9, r: -12 },
-  { x: 33, y: 67, w: 10.5, z: -.7, r: 8 }, { x: 68, y: 68, w: 11, z: -.6, r: -6 },
-  { x: 8, y: 95, w: 15, z: 1, r: 14 },     { x: 93, y: 94, w: 15, z: 1, r: -15 },
-];
-const ORDER = ['air-jordan-1-high:chicago', 'air-force-1-low:white-grey', 'runner-9060:blue', 'air-force-1-low-pastel:ice', 'propulsion-runner:black', 'air-jordan-1-high:powder',
+/* ORBIT ENTRY — shoes circle the brand name on a tilted ring. Half of them pass behind the
+   title, half in front. Drag to spin, move to steer, tap a shoe (or the orb) to dive into its scene. */
+const PICKS = ['air-jordan-1-high:chicago', 'air-force-1-low:white-grey', 'runner-9060:blue', 'air-force-1-low-pastel:ice', 'propulsion-runner:black', 'air-jordan-1-high:powder',
   'air-force-1-suede:denim', 'go-walk-knit:navy', 'air-force-1-low:black', 'knit-lite:olive', 'air-jordan-1-high:navy', 'air-force-1-mid:grey-suede', 'air-force-1-low-pastel:sage', 'ultra-go-lace:black'];
 
-let nodes = [], built = false, active = false, tx = 0, ty = 0, setters = [], drift = [];
-let gyro = false;
+let items = [], built = false, active = false, tick = null;
+const S = { angle: 0, vel: 0, target: .1, reveal: 0, exit: 0, boost: 0 };
+const P = { x: .5, y: .5, tx: .5, ty: .5, mx: 0, my: 0 };
+let W = 0, H = 0, drag = null, onPick = () => {}, picked = null;
 
 function build() {
-  const field = $('#ent-field');
-  const pick = ORDER.map(k => { const [s, c] = k.split(':'); return DB.bySlug[s]?.colors.find(x => x.id === c); }).filter(Boolean);
-  const mob = innerWidth < 900;
-  nodes = SLOTS.slice(0, pick.length).map((s, i) => {
-    const c = pick[i], sc = 1 + s.z * .3;
-    const w = s.w * (mob ? 1.9 : 1) * sc;
-    if (mob && Math.abs(s.x - 50) < 40 && s.z < -.5 && i > 7) return null;       // thin the field on phones
-    const el = document.createElement('div'); el.className = 'fs';
-    el.style.cssText = `left:${s.x}%;top:${s.y}%;width:${w}vw;margin-left:${-w / 2}vw;margin-top:${-(w * c.h / c.w) / 2 * (innerWidth / innerHeight)}vh;z-index:${Math.round(10 + s.z * 8)}`;
-    const inner = document.createElement('div'); inner.className = 'fs-in';
+  const ring = $('#ent-ring');
+  const list = PICKS.map(k => { const [s, c] = k.split(':'); return DB.bySlug[s]?.colors.find(x => x.id === c); }).filter(Boolean);
+  items = list.map((c, i) => {
+    const el = document.createElement('div'); el.className = 'ring-it'; el.dataset.slug = c.product.slug; el.dataset.color = c.id;
+    el.setAttribute('role', 'link'); el.setAttribute('aria-label', `${c.product.fa} — ${c.name}`);
     const img = document.createElement('img'); img.src = c.imageSm; img.alt = ''; img.decoding = 'async'; img.draggable = false;
-    const blur = Math.abs(s.z - .15) * (s.z < 0 ? 3.2 : 4.6);
-    img.style.filter = `blur(${blur.toFixed(1)}px) drop-shadow(0 ${24 + s.z * 14}px ${20 + s.z * 12}px rgba(0,0,0,${.45 + s.z * .1}))`;
-    inner.append(img); el.append(inner); field.append(el);
-    return { el, inner, img, ...s, o: .5 + .5 * (s.z + 1) / 2 };
-  }).filter(Boolean);
-  setters = nodes.map(n => ({ x: gsap.quickTo(n.el, 'x', { duration: 1.1, ease: 'power3.out' }), y: gsap.quickTo(n.el, 'y', { duration: 1.1, ease: 'power3.out' }) }));
+    el.append(img); ring.append(el);
+    return { el, c, i, ar: c.h / c.w, z: 0, x: 0, y: 0 };
+  });
+  $('#v-entry').addEventListener('pointerdown', e => {
+    if (!active || e.target.closest('a,button')) return;
+    drag = { x: e.clientX, y: e.clientY, last: e.clientX, moved: 0, t: e.target.closest('.ring-it') };
+  });
+  addEventListener('pointermove', e => {
+    P.tx = e.clientX / innerWidth; P.ty = e.clientY / innerHeight;
+    if (!drag) return;
+    const dx = e.clientX - drag.last; drag.last = e.clientX; drag.moved += Math.abs(dx);
+    if (drag.moved > 6) { S.angle += dx * .0052; S.vel = dx * .0052 * 60; }
+  });
+  addEventListener('pointerup', e => {
+    if (!drag) return;
+    const dr = drag; drag = null;
+    if (dr.moved < 8 && dr.t) pick(items.find(i => i.el === dr.t));
+  });
   built = true;
 }
 
-function onMove(e) {
-  if (!active) return;
-  tx = (e.clientX / innerWidth - .5) * 2; ty = (e.clientY / innerHeight - .5) * 2;
-  apply();
-}
-function onGyro(e) {
-  if (!active || e.gamma == null) return;
-  tx = clamp(e.gamma / 30, -1, 1); ty = clamp(((e.beta || 45) - 45) / 30, -1, 1); apply();
-}
-function apply() {
-  nodes.forEach((n, i) => { const k = (n.z + 1.25) * 30; setters[i].x(-tx * k); setters[i].y(-ty * k * .7); });
+function layout() {
+  W = innerWidth; H = innerHeight;
+  const mob = W < 900;
+  const rx = mob ? W * .42 : Math.min(W * .43, 640);
+  const ry = mob ? H * .12 : Math.min(H * .2, 200);
+  const sw = mob ? W * .34 : Math.min(W * .17, 250);
+  const cy = mob ? H * .5 : H * .5;
+  Object.assign(S, { rx, ry, sw, cy });
+  items.forEach(it => {
+    it.el.style.width = sw + 'px'; it.el.style.marginLeft = -sw / 2 + 'px'; it.el.style.marginTop = -(sw * it.ar) / 2 + 'px'; it.el.style.top = cy + 'px';
+  });
 }
 
+function frame(_, dt) {
+  const k = Math.min(.05, dt / 1000);
+  // spin: free drift + pointer steering + inertia
+  if (!drag) {
+    const steer = FINE ? (P.x - .5) * .5 : 0;
+    S.vel *= Math.pow(.04, k);                           // inertia decay
+    S.angle += (S.target + steer + S.boost) * k + S.vel * k;
+  }
+  P.x = lerp(P.x, P.tx, 1 - Math.pow(.001, k)); P.y = lerp(P.y, P.ty, 1 - Math.pow(.001, k));
+  const n = items.length, rv = S.reveal, ex = S.exit;
+  const px = (P.x - .5) * 2, py = (P.y - .5) * 2;
+  for (const it of items) {
+    const a = S.angle + (it.i / n) * Math.PI * 2 + (1 - rv) * 5.5;
+    const c = Math.cos(a), s = Math.sin(a);                // s > 0 → near the viewer
+    const t = (s + 1) / 2;
+    let x = c * S.rx * rv, y = s * S.ry * rv - py * 14 * (.3 + t);
+    x += -px * 22 * (.3 + t);
+    let sc = lerp(.48, 1.08, t) * (.2 + .8 * rv);
+    let op = lerp(.32, 1, Math.pow(t, .65)) * clamp(rv * 1.6, 0, 1);
+    if (ex > 0) {
+      if (it === picked) { sc *= 1 + ex * .05; }
+      else { x *= 1 + ex * .9; y += ex * 80 * (s > 0 ? 1 : -1); sc *= 1 + ex * .35; op *= 1 - ex; }
+    }
+    it.z = s;
+    const rot = c * 9 - (1 - rv) * 90;
+    it.el.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) scale(${sc.toFixed(3)}) rotate(${rot.toFixed(1)}deg)`;
+    it.el.style.opacity = op.toFixed(3);
+    it.el.style.zIndex = s > .05 ? 10 + Math.round(t * 10) : 2 + Math.round(t * 5);
+  }
+  // spotlight on the title follows the pointer (or sweeps by itself on touch)
+  const ti = $('#ent-title'), sp = $('.t-spot');
+  if (sp) {
+    const r = sp.getBoundingClientRect();
+    let mx, my;
+    if (FINE) { mx = P.x * W - r.left; my = P.y * H - r.top; }
+    else { const tt = performance.now() / 1000; mx = r.width * (.5 + .42 * Math.sin(tt * .8)); my = r.height * (.5 + .3 * Math.sin(tt * 1.3)); }
+    ti.style.setProperty('--mx', mx.toFixed(0) + 'px'); ti.style.setProperty('--my', my.toFixed(0) + 'px');
+  }
+}
+
+function frontMost() { return items.reduce((a, b) => (b.z > a.z ? b : a), items[0]); }
+
+function pick(it) {
+  if (!it || !active) return;
+  picked = it;
+  const rect = $('img', it.el).getBoundingClientRect();
+  onPick({ slug: it.c.product.slug, color: it.c.id, rect });
+}
+
+let gyro = false;
+function onGyro(e) {
+  if (!active || e.gamma == null) return;
+  P.tx = clamp(.5 + e.gamma / 60, 0, 1); P.ty = clamp(.5 + ((e.beta || 45) - 45) / 60, 0, 1);
+}
 export async function requestMotion() {
   if (gyro || FINE) return;
   try {
@@ -63,39 +118,46 @@ export async function requestMotion() {
 }
 
 export const entry = {
+  init(cb) { onPick = cb; },
+  /* called by the orb */
+  pickFront() { pick(frontMost()); },
   enter(first) {
     if (!built) build();
-    active = true; tx = ty = 0;
-    const el = $('#v-entry');
-    addEventListener('pointermove', onMove, { passive: true });
-    if (!FINE) addEventListener('deviceorientation', onGyro, { passive: true });
+    layout(); active = true; picked = null; S.exit = 0; S.boost = 0; S.reveal = first === false ? .6 : 0;
+    addEventListener('resize', layout);
+    gsap.ticker.add(frame); tick = frame;
+    gsap.to(S, { reveal: 1, duration: d(first === false ? 1.4 : 2.8), ease: 'expo.out', delay: .1 });
+    gsap.fromTo(S, { boost: 3.2 }, { boost: 0, duration: d(3.4), ease: 'power3.out' });
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    gsap.killTweensOf([...$$('.fs-in'), ...$$('.fs')]);
-    tl.fromTo(nodes.map(n => n.inner), { scale: .25, y: 160, opacity: 0, rotation: i => (i % 2 ? 30 : -30) }, { scale: 1, y: 0, opacity: 1, rotation: i => nodes[i].r, duration: d(first ? 2.2 : 1.5), stagger: { each: .07, from: 'random' } }, 0);
-    nodes.forEach((n, i) => gsap.set(n.img, { opacity: n.o }));
-    tl.fromTo('#ent-fa span', { yPercent: 115, rotate: 5, opacity: 0 }, { yPercent: 0, rotate: 0, opacity: 1, duration: d(1.5), stagger: .1 }, .15)
-      .fromTo('.ent-en', { opacity: 0, letterSpacing: '1em' }, { opacity: 1, letterSpacing: '.38em', duration: d(1.6) }, .45)
-      .fromTo('.ent-kicker,.ent-sub,.ent-cta', { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: d(1), stagger: .1 }, .6)
-      .fromTo('.ent-hint', { opacity: 0 }, { opacity: 1, duration: 1 }, 1.4);
-    if (!RM) {
-      drift = nodes.map((n, i) => gsap.to(n.inner, {
-        y: `+=${gsap.utils.random(8, 20)}`, rotation: n.r + gsap.utils.random(-3, 3), duration: gsap.utils.random(3.6, 6.4), ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.6 + i * .15
-      }));
+    tl.fromTo('.t-base>span,.t-spot>span', { yPercent: 110, rotate: 6, opacity: 0 }, { yPercent: 0, rotate: 0, opacity: 1, duration: d(1.5), stagger: .1 }, .2)
+      .fromTo('.ent-en', { opacity: 0, letterSpacing: '1.1em' }, { opacity: 1, letterSpacing: '.4em', duration: d(1.8) }, .5)
+      .fromTo('.ent-kicker,.ent-sub', { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: d(1), stagger: .1 }, .7)
+      .fromTo('.ent-dock > *', { y: 60, opacity: 0, scale: .8 }, { y: 0, opacity: 1, scale: 1, duration: d(1.2), stagger: .09, ease: 'back.out(1.5)' }, 1)
+      .fromTo('.band', { xPercent: 12, opacity: 0 }, { xPercent: 0, opacity: 1, duration: d(2), stagger: .2 }, .1)
+      .fromTo('.ent-hint', { opacity: 0 }, { opacity: 1, duration: 1 }, 2);
+    // magnetic orb
+    const orb = $('.orb');
+    if (FINE && orb) {
+      const qx = gsap.quickTo(orb, 'x', { duration: .6, ease: 'power3' }), qy = gsap.quickTo(orb, 'y', { duration: .6, ease: 'power3' });
+      orb._mv = e => { const r = orb.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2); const dist = Math.hypot(dx, dy); if (dist < 190) { qx(dx * .28); qy(dy * .28); } else { qx(0); qy(0); } };
+      addEventListener('pointermove', orb._mv);
     }
     return tl;
   },
   leave() {
-    active = false;
-    removeEventListener('pointermove', onMove);
-    removeEventListener('deviceorientation', onGyro);
-    drift.forEach(t => t.kill()); drift = [];
+    active = false; removeEventListener('resize', layout);
+    gsap.ticker.remove(frame);
+    const orb = $('.orb'); if (orb?._mv) { removeEventListener('pointermove', orb._mv); gsap.set(orb, { x: 0, y: 0 }); }
   },
-  /* fly the shoes outward as the view hands over to the scene */
+  /* dive: everything else flies away, the picked shoe is handed to the scene */
   exit() {
-    const tl = gsap.timeline({ defaults: { ease: 'expo.in' } });
-    tl.to(nodes.map(n => n.inner), { scale: 1.6, opacity: 0, duration: d(.75), stagger: { each: .02, from: 'center' } }, 0)
-      .to('.ent-core', { opacity: 0, y: -30, duration: d(.5) }, 0);
+    const tl = gsap.timeline();
+    tl.to(S, { exit: 1, duration: d(.75), ease: 'power3.inOut' }, 0)
+      .to('.ent-core,.ent-dock,.ent-bands,.ent-beams,.ent-hint', { opacity: 0, duration: d(.5), ease: 'power2.in' }, 0);
     return tl;
   },
-  reset() { gsap.set(['.ent-core'], { clearProps: 'all' }); }
+  reset() { gsap.set('.ent-core,.ent-dock,.ent-bands,.ent-beams,.ent-hint', { clearProps: 'opacity' }); S.exit = 0; },
+  get picked() { return picked; },
+  hideShoe() { if (picked) picked.el.style.visibility = 'hidden'; },
+  showShoe() { items.forEach(i => { i.el.style.visibility = ''; }); },
 };
