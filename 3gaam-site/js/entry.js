@@ -44,9 +44,9 @@ function layout() {
   W = innerWidth; H = innerHeight;
   const mob = W < 900;
   const rx = mob ? W * .42 : Math.min(W * .43, 640);
-  const ry = mob ? H * .12 : Math.min(H * .2, 200);
+  const ry = mob ? H * .11 : Math.min(H * .17, 160);
   const sw = mob ? W * .34 : Math.min(W * .17, 250);
-  const cy = mob ? H * .5 : H * .5;
+  const cy = mob ? H * .52 : H * .535;
   Object.assign(S, { rx, ry, sw, cy });
   items.forEach(it => {
     it.el.style.width = sw + 'px'; it.el.style.marginLeft = -sw / 2 + 'px'; it.el.style.marginTop = -(sw * it.ar) / 2 + 'px'; it.el.style.top = cy + 'px';

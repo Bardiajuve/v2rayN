@@ -9,6 +9,8 @@ import { initGallery } from './gallery.js';
 import { wallView } from './wall.js';
 import { pages, initMaps } from './pages.js';
 
+// the page is Persian/RTL even when it is hosted inside a frame that does not set <html dir>
+document.documentElement.dir = 'rtl'; document.documentElement.lang = 'fa';
 const gsap = window.gsap;
 if (window.Flip) gsap.registerPlugin(window.Flip);
 if (RM) document.documentElement.classList.add('reduce');
