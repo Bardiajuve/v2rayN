@@ -1,0 +1,915 @@
+{
+  "carton": {
+    "pairs": 12,
+    "min": 2
+  },
+  "sole": {
+    "pu": "پی‌یو (PU)",
+    "eva": "ای‌وی‌ای (EVA)",
+    "airbolling": "ایربولینگ",
+    "pvc": "پی‌وی‌سی (PVC)"
+  },
+  "products": [
+    {
+      "slug": "air-force-1-low",
+      "name": "Air Force 1 Low",
+      "display": "AIR FORCE",
+      "fa": "ایر فورس ۱ لو کلاسیک",
+      "category": "اسپرت روزمره",
+      "tag": "پرفروش",
+      "sole": "pu",
+      "gender": "unisex",
+      "colors": [
+        {
+          "id": "white-grey",
+          "name": "سفید / طوسی",
+          "hex": "#dfe2e6",
+          "source": "IMG_20261104_025925_177.png",
+          "world": "#2b7bbd",
+          "image": "assets/products/air-force-1-low/white-grey.webp",
+          "imageSm": "assets/products/air-force-1-low/white-grey-sm.webp",
+          "w": 1126,
+          "h": 828,
+          "theme": {
+            "bg": "#1a4c75",
+            "bg2": "#05222b",
+            "accent": "#72b7ff",
+            "hue": 0.575
+          }
+        },
+        {
+          "id": "black",
+          "name": "مشکی",
+          "hex": "#17191c",
+          "source": "file_0000000022a081f48707f09d13f5f1de.png",
+          "world": "#c2461f",
+          "image": "assets/products/air-force-1-low/black.webp",
+          "imageSm": "assets/products/air-force-1-low/black-sm.webp",
+          "w": 990,
+          "h": 875,
+          "theme": {
+            "bg": "#752a12",
+            "bg2": "#2b0302",
+            "accent": "#ff9c72",
+            "hue": 0.04
+          }
+        }
+      ],
+      "description": "طرح کلاسیک و همیشه‌پرفروش. رویه چرم مصنوعی مقاوم با دوخت دوردوز و زیره PU سبک و ضدلغزش؛ مناسب هر ویترین و هر فصل.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.5,
+          "y": 0.93,
+          "lx": 0.22,
+          "ly": 1.12,
+          "t": "زیره PU",
+          "d": "سبک، ضدلغزش و مقاوم"
+        },
+        {
+          "k": "leather",
+          "x": 0.5,
+          "y": 0.36,
+          "lx": 0.1,
+          "ly": 0.06,
+          "t": "چرم مصنوعی مقاوم",
+          "d": "سطح صاف و مقاوم در برابر خراش"
+        },
+        {
+          "k": "stitch",
+          "x": 0.3,
+          "y": 0.7,
+          "lx": -0.05,
+          "ly": 0.47,
+          "t": "دوخت دوردوز",
+          "d": "دوام بالا در محل اتصال‌ها"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "air-force-1-low-pastel",
+      "name": "Air Force 1 Low Pastel",
+      "display": "PASTEL",
+      "fa": "ایر فورس ۱ لو پاستل",
+      "category": "اسپرت بانوان",
+      "tag": "ویژه بانوان",
+      "sole": "pu",
+      "gender": "women",
+      "colors": [
+        {
+          "id": "ice",
+          "name": "آبی یخی",
+          "hex": "#bcd7f2",
+          "source": "file_00000000c0f081f4b7bd50aee67296cf.png",
+          "image": "assets/products/air-force-1-low-pastel/ice.webp",
+          "imageSm": "assets/products/air-force-1-low-pastel/ice-sm.webp",
+          "w": 1075,
+          "h": 996,
+          "theme": {
+            "bg": "#176a75",
+            "bg2": "#042b27",
+            "accent": "#72e6ff",
+            "hue": 0.52
+          },
+          "world": "#1f8f9e"
+        },
+        {
+          "id": "sage",
+          "name": "مریم‌گلی",
+          "hex": "#8fa58b",
+          "source": "file_00000000c6cc81f4ab1cce90aa365ee0.png",
+          "image": "assets/products/air-force-1-low-pastel/sage.webp",
+          "imageSm": "assets/products/air-force-1-low-pastel/sage-sm.webp",
+          "w": 923,
+          "h": 876,
+          "theme": {
+            "bg": "#5b753a",
+            "bg2": "#252b11",
+            "accent": "#b8ff72",
+            "hue": 0.241
+          },
+          "world": "#58703a"
+        }
+      ],
+      "description": "کلکسیون رنگ‌های ملایم برای بانوان؛ رویه سفید با جزئیات رنگی و زیره سبک PU. سایزبندی ۳۶ تا ۴۰.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.62,
+          "y": 0.93,
+          "lx": 0.28,
+          "ly": 1.1,
+          "t": "زیره PU",
+          "d": "سبک، ضدلغزش و مقاوم"
+        },
+        {
+          "k": "leather",
+          "x": 0.52,
+          "y": 0.33,
+          "lx": 0.08,
+          "ly": 0.1,
+          "t": "چرم مصنوعی مقاوم",
+          "d": "سطح صاف و مقاوم در برابر خراش"
+        },
+        {
+          "k": "stitch",
+          "x": 0.35,
+          "y": 0.68,
+          "lx": -0.04,
+          "ly": 0.46,
+          "t": "دوخت دوردوز",
+          "d": "دوام بالا در محل اتصال‌ها"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "air-force-1-suede",
+      "name": "Air Force 1 Suede",
+      "display": "SUEDE",
+      "fa": "ایر فورس ۱ جیر",
+      "category": "اسپرت روزمره",
+      "tag": "جدید",
+      "sole": "eva",
+      "gender": "men",
+      "colors": [
+        {
+          "id": "denim",
+          "name": "آبی جین",
+          "hex": "#3f6a9c",
+          "source": "file_00000000aa6881f48efd2ce30a58ab28.png",
+          "image": "assets/products/air-force-1-suede/denim.webp",
+          "imageSm": "assets/products/air-force-1-suede/denim-sm.webp",
+          "w": 1047,
+          "h": 834,
+          "theme": {
+            "bg": "#754017",
+            "bg2": "#2b0d04",
+            "accent": "#ffb872",
+            "hue": 0.073
+          },
+          "world": "#d9772b"
+        }
+      ],
+      "description": "رویه جیر مصنوعی با بافت مخملی و زیره EVA فوق‌سبک. دوخت دوتایی روی بند و پاشنه برای دوام بیشتر.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.55,
+          "y": 0.93,
+          "lx": 0.25,
+          "ly": 1.1,
+          "t": "زیره EVA",
+          "d": "فوق‌سبک و انعطاف‌پذیر"
+        },
+        {
+          "k": "suede",
+          "x": 0.7,
+          "y": 0.55,
+          "lx": 1.0,
+          "ly": 0.22,
+          "t": "جیر مصنوعی",
+          "d": "بافت مخملی و نرم"
+        },
+        {
+          "k": "stitch",
+          "x": 0.22,
+          "y": 0.42,
+          "lx": 0.0,
+          "ly": -0.07,
+          "t": "دوخت دوردوز",
+          "d": "دوام بالا در محل اتصال‌ها"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "air-force-1-mid",
+      "name": "Air Force 1 Mid Strap",
+      "display": "MID STRAP",
+      "fa": "ایر فورس ۱ ساق‌دار چسبی",
+      "category": "نیم‌ساق",
+      "tag": "",
+      "sole": "pvc",
+      "gender": "men",
+      "colors": [
+        {
+          "id": "grey-suede",
+          "name": "طوسی جیر",
+          "hex": "#8e9094",
+          "source": "file_0000000017208211b6d0fcf7ff4a5a88.png",
+          "world": "#6b4bd6",
+          "image": "assets/products/air-force-1-mid/grey-suede.webp",
+          "imageSm": "assets/products/air-force-1-mid/grey-suede-sm.webp",
+          "w": 1062,
+          "h": 918,
+          "theme": {
+            "bg": "#3a2975",
+            "bg2": "#0b0a2b",
+            "accent": "#9b72ff",
+            "hue": 0.705
+          }
+        }
+      ],
+      "description": "نیم‌ساق با بند چسبی و رویه جیر طوسی. زیره PVC مقاوم در برابر سایش، مناسب فصل سرد.",
+      "features": [
+        {
+          "k": "strap",
+          "x": 0.55,
+          "y": 0.22,
+          "lx": 0.08,
+          "ly": 0.1,
+          "t": "بند چسبی",
+          "d": "بستن سریع، ساق ثابت"
+        },
+        {
+          "k": "suede",
+          "x": 0.72,
+          "y": 0.55,
+          "lx": 1.0,
+          "ly": 0.3,
+          "t": "جیر مصنوعی",
+          "d": "بافت مخملی و نرم"
+        },
+        {
+          "k": "sole",
+          "x": 0.45,
+          "y": 0.93,
+          "lx": 0.2,
+          "ly": 1.1,
+          "t": "زیره PVC",
+          "d": "مقاوم در برابر سایش"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "air-jordan-1-high",
+      "name": "Air Jordan 1 High Retro",
+      "display": "JORDAN 1",
+      "fa": "ایر جردن ۱ های رترو",
+      "category": "ساق‌بلند",
+      "tag": "پرفروش",
+      "sole": "airbolling",
+      "gender": "unisex",
+      "colors": [
+        {
+          "id": "smoke",
+          "name": "طوسی دودی",
+          "hex": "#9ea3aa",
+          "source": "file_00000000ac5481f4b3602eeb1531f932.png",
+          "world": "#355c8f",
+          "image": "assets/products/air-jordan-1-high/smoke.webp",
+          "imageSm": "assets/products/air-jordan-1-high/smoke-sm.webp",
+          "w": 925,
+          "h": 603,
+          "theme": {
+            "bg": "#2b4b75",
+            "bg2": "#0b202b",
+            "accent": "#72a7ff",
+            "hue": 0.594
+          },
+          "features": [
+            {
+              "k": "heel",
+              "x": 0.9,
+              "y": 0.8,
+              "lx": 0.92,
+              "ly": 1.12,
+              "t": "پاشنه ایربولینگ",
+              "d": "کوسن هوا؛ جذب ضربه"
+            },
+            {
+              "k": "stitch",
+              "x": 0.55,
+              "y": 0.55,
+              "lx": 0.12,
+              "ly": 0.1,
+              "t": "دوخت دوردوز",
+              "d": "دوام بالا در محل اتصال‌ها"
+            },
+            {
+              "k": "leather",
+              "x": 0.72,
+              "y": 0.2,
+              "lx": 1.0,
+              "ly": -0.04,
+              "t": "چرم مصنوعی مقاوم",
+              "d": "سطح صاف و مقاوم در برابر خراش"
+            }
+          ]
+        },
+        {
+          "id": "chicago",
+          "name": "چیکاگو",
+          "hex": "#c8202f",
+          "source": "IMG_20261104_030253_073.png",
+          "image": "assets/products/air-jordan-1-high/chicago.webp",
+          "imageSm": "assets/products/air-jordan-1-high/chicago-sm.webp",
+          "w": 972,
+          "h": 608,
+          "theme": {
+            "bg": "#751e29",
+            "bg2": "#2b0713",
+            "accent": "#ff727b",
+            "hue": 0.979
+          },
+          "alphaCut": 150
+        },
+        {
+          "id": "navy",
+          "name": "سرمه‌ای / آبی",
+          "hex": "#1d3a73",
+          "source": "file_000000003fec81f4a94eae4da646e842.png",
+          "image": "assets/products/air-jordan-1-high/navy.webp",
+          "imageSm": "assets/products/air-jordan-1-high/navy-sm.webp",
+          "w": 966,
+          "h": 598,
+          "theme": {
+            "bg": "#3a5075",
+            "bg2": "#11202b",
+            "accent": "#729eff",
+            "hue": 0.604
+          },
+          "features": [
+            {
+              "k": "heel",
+              "x": 0.9,
+              "y": 0.8,
+              "lx": 0.92,
+              "ly": 1.12,
+              "t": "پاشنه ایربولینگ",
+              "d": "کوسن هوا؛ جذب ضربه"
+            },
+            {
+              "k": "stitch",
+              "x": 0.55,
+              "y": 0.55,
+              "lx": 0.12,
+              "ly": 0.1,
+              "t": "دوخت دوردوز",
+              "d": "دوام بالا در محل اتصال‌ها"
+            },
+            {
+              "k": "leather",
+              "x": 0.72,
+              "y": 0.2,
+              "lx": 1.0,
+              "ly": -0.04,
+              "t": "چرم مصنوعی مقاوم",
+              "d": "سطح صاف و مقاوم در برابر خراش"
+            }
+          ]
+        },
+        {
+          "id": "powder",
+          "name": "آبی آسمانی",
+          "hex": "#7fb4e6",
+          "source": "file_00000000eed08210a2c7a2b11aa675ac (1).png",
+          "image": "assets/products/air-jordan-1-high/powder.webp",
+          "imageSm": "assets/products/air-jordan-1-high/powder-sm.webp",
+          "w": 1001,
+          "h": 582,
+          "theme": {
+            "bg": "#3a5f75",
+            "bg2": "#11272b",
+            "accent": "#72c1ff",
+            "hue": 0.562
+          },
+          "features": [
+            {
+              "k": "heel",
+              "x": 0.9,
+              "y": 0.8,
+              "lx": 0.92,
+              "ly": 1.12,
+              "t": "پاشنه ایربولینگ",
+              "d": "کوسن هوا؛ جذب ضربه"
+            },
+            {
+              "k": "stitch",
+              "x": 0.55,
+              "y": 0.55,
+              "lx": 0.12,
+              "ly": 0.1,
+              "t": "دوخت دوردوز",
+              "d": "دوام بالا در محل اتصال‌ها"
+            },
+            {
+              "k": "leather",
+              "x": 0.72,
+              "y": 0.2,
+              "lx": 1.0,
+              "ly": -0.04,
+              "t": "چرم مصنوعی مقاوم",
+              "d": "سطح صاف و مقاوم در برابر خراش"
+            }
+          ]
+        },
+        {
+          "id": "koi",
+          "name": "طرح هنری",
+          "hex": "#e2562b",
+          "source": "IMG_20261104_030301_194.png",
+          "image": "assets/products/air-jordan-1-high/koi.webp",
+          "imageSm": "assets/products/air-jordan-1-high/koi-sm.webp",
+          "w": 985,
+          "h": 618,
+          "theme": {
+            "bg": "#75352c",
+            "bg2": "#2b0c0e",
+            "accent": "#ff8c72",
+            "hue": 0.021
+          },
+          "features": [
+            {
+              "k": "heel",
+              "x": 0.88,
+              "y": 0.78,
+              "lx": 0.9,
+              "ly": 1.12,
+              "t": "پاشنه ایربولینگ",
+              "d": "کوسن هوا؛ جذب ضربه"
+            },
+            {
+              "k": "leather",
+              "x": 0.22,
+              "y": 0.3,
+              "lx": 0.45,
+              "ly": -0.1,
+              "t": "چرم مصنوعی مقاوم",
+              "d": "سطح صاف و مقاوم در برابر خراش"
+            },
+            {
+              "k": "stitch",
+              "x": 0.58,
+              "y": 0.55,
+              "lx": 0.9,
+              "ly": 0.08,
+              "t": "دوخت دوردوز",
+              "d": "دوام بالا در محل اتصال‌ها"
+            }
+          ]
+        }
+      ],
+      "description": "ساق‌بلند رترو با پاشنه ایربولینگ و کوسن هوا برای راحتی در پیاده‌روی طولانی. پنج رنگ‌بندی از کلاسیک تا طرح هنری.",
+      "features": [
+        {
+          "k": "heel",
+          "x": 0.1,
+          "y": 0.8,
+          "lx": 0.08,
+          "ly": 1.12,
+          "t": "پاشنه ایربولینگ",
+          "d": "کوسن هوا؛ جذب ضربه"
+        },
+        {
+          "k": "stitch",
+          "x": 0.72,
+          "y": 0.5,
+          "lx": 0.92,
+          "ly": 0.1,
+          "t": "دوخت دوردوز",
+          "d": "دوام بالا در محل اتصال‌ها"
+        },
+        {
+          "k": "leather",
+          "x": 0.42,
+          "y": 0.3,
+          "lx": 0.62,
+          "ly": -0.1,
+          "t": "چرم مصنوعی مقاوم",
+          "d": "سطح صاف و مقاوم در برابر خراش"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "go-walk-knit",
+      "name": "Go Walk Knit Slip-On",
+      "display": "GO WALK",
+      "fa": "گو واک بافت اسلیپ‌آن",
+      "category": "پیاده‌روی",
+      "tag": "",
+      "sole": "eva",
+      "gender": "men",
+      "colors": [
+        {
+          "id": "black",
+          "name": "مشکی",
+          "hex": "#15171a",
+          "source": "file_0000000092b88210b54c61602930b143.png",
+          "world": "#b8413a",
+          "image": "assets/products/go-walk-knit/black.webp",
+          "imageSm": "assets/products/go-walk-knit/black-sm.webp",
+          "w": 1042,
+          "h": 606,
+          "theme": {
+            "bg": "#752924",
+            "bg2": "#2b090e",
+            "accent": "#ff8272",
+            "hue": 0.009
+          }
+        },
+        {
+          "id": "navy",
+          "name": "سرمه‌ای",
+          "hex": "#1b2a5c",
+          "source": "file_00000000c528820b9960816d7d85e79f.png",
+          "image": "assets/products/go-walk-knit/navy.webp",
+          "imageSm": "assets/products/go-walk-knit/navy-sm.webp",
+          "w": 947,
+          "h": 700,
+          "theme": {
+            "bg": "#3a4175",
+            "bg2": "#111a2b",
+            "accent": "#727bff",
+            "hue": 0.646
+          },
+          "keep": "largest",
+          "features": [
+            {
+              "k": "sole",
+              "x": 0.45,
+              "y": 0.88,
+              "lx": 0.3,
+              "ly": 1.1,
+              "t": "زیره EVA",
+              "d": "سبک و ضدلغزش"
+            },
+            {
+              "k": "knit",
+              "x": 0.5,
+              "y": 0.5,
+              "lx": 0.12,
+              "ly": 0.12,
+              "t": "رویه بافت",
+              "d": "تنفس‌پذیر و سبک"
+            },
+            {
+              "k": "tab",
+              "x": 0.85,
+              "y": 0.12,
+              "lx": 0.95,
+              "ly": -0.05,
+              "t": "پاشنه‌کش تقویتی",
+              "d": "پوشیدن سریع بدون بند"
+            }
+          ]
+        }
+      ],
+      "description": "اسلیپ‌آن بافت‌دار تنفس‌پذیر با زیره EVA سبک و انعطاف‌پذیر؛ بدون بند، پوشیدن در یک ثانیه.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.75,
+          "y": 0.92,
+          "lx": 0.55,
+          "ly": 1.1,
+          "t": "زیره EVA",
+          "d": "فوق‌سبک و انعطاف‌پذیر"
+        },
+        {
+          "k": "knit",
+          "x": 0.45,
+          "y": 0.45,
+          "lx": 0.2,
+          "ly": 0.02,
+          "t": "رویه بافت",
+          "d": "تنفس‌پذیر و سبک"
+        },
+        {
+          "k": "heel",
+          "x": 0.92,
+          "y": 0.25,
+          "lx": 1.0,
+          "ly": -0.05,
+          "t": "پاشنه‌کش تقویتی",
+          "d": "پوشیدن سریع بدون بند"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "knit-lite",
+      "name": "Knit Lite Runner",
+      "display": "KNIT LITE",
+      "fa": "نیت لایت دویدن",
+      "category": "پیاده‌روی بانوان",
+      "tag": "ویژه بانوان",
+      "sole": "eva",
+      "gender": "women",
+      "colors": [
+        {
+          "id": "olive",
+          "name": "زیتونی",
+          "hex": "#a9ab8a",
+          "source": "SG-001-post-01-hero.png",
+          "image": "assets/products/knit-lite/olive.webp",
+          "imageSm": "assets/products/knit-lite/olive-sm.webp",
+          "w": 1121,
+          "h": 813,
+          "theme": {
+            "bg": "#755f3a",
+            "bg2": "#2b1c11",
+            "accent": "#ffd272",
+            "hue": 0.104
+          }
+        },
+        {
+          "id": "white",
+          "name": "سفید",
+          "hex": "#e8eaee",
+          "source": "file_00000000b95081f4938089f75924a9de.png",
+          "world": "#1f7a8c",
+          "image": "assets/products/knit-lite/white.webp",
+          "imageSm": "assets/products/knit-lite/white-sm.webp",
+          "w": 1077,
+          "h": 743,
+          "theme": {
+            "bg": "#196675",
+            "bg2": "#052b29",
+            "accent": "#72dfff",
+            "hue": 0.528
+          }
+        }
+      ],
+      "description": "رویه بافت سبک با بند کشی و زیره EVA راحت؛ مخصوص بانوان با سایزبندی ۳۶ تا ۴۰.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.3,
+          "y": 0.88,
+          "lx": 0.15,
+          "ly": 1.08,
+          "t": "زیره EVA",
+          "d": "فوق‌سبک و انعطاف‌پذیر"
+        },
+        {
+          "k": "knit",
+          "x": 0.55,
+          "y": 0.62,
+          "lx": 0.88,
+          "ly": 0.88,
+          "t": "رویه بافت",
+          "d": "تنفس‌پذیر و سبک"
+        },
+        {
+          "k": "lace",
+          "x": 0.72,
+          "y": 0.26,
+          "lx": 0.92,
+          "ly": 0,
+          "t": "بند کشی",
+          "d": "تنظیم سریع روی پا"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "ultra-go-lace",
+      "name": "Ultra Go Lace",
+      "display": "ULTRA GO",
+      "fa": "اولترا گو بندی",
+      "category": "پیاده‌روی",
+      "tag": "",
+      "sole": "eva",
+      "gender": "men",
+      "colors": [
+        {
+          "id": "black",
+          "name": "مشکی",
+          "hex": "#15171a",
+          "source": "IMG_20261104_030046_500.png",
+          "world": "#6a3fc2",
+          "image": "assets/products/ultra-go-lace/black.webp",
+          "imageSm": "assets/products/ultra-go-lace/black-sm.webp",
+          "w": 1041,
+          "h": 940,
+          "theme": {
+            "bg": "#402675",
+            "bg2": "#0d092b",
+            "accent": "#a972ff",
+            "hue": 0.721
+          }
+        }
+      ],
+      "description": "بافت یکپارچه، بند کشی ظریف و زیره EVA سبک با شیار ضدلغزش؛ ظاهر اسپرت، وزن بسیار کم.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.5,
+          "y": 0.78,
+          "lx": 0.15,
+          "ly": 0.98,
+          "t": "زیره EVA",
+          "d": "فوق‌سبک و انعطاف‌پذیر"
+        },
+        {
+          "k": "knit",
+          "x": 0.62,
+          "y": 0.45,
+          "lx": 0.97,
+          "ly": 0.75,
+          "t": "رویه بافت",
+          "d": "تنفس‌پذیر و سبک"
+        },
+        {
+          "k": "tab",
+          "x": 0.12,
+          "y": 0.08,
+          "lx": 0.48,
+          "ly": -0.08,
+          "t": "پاشنه‌کش",
+          "d": "پوشیدن راحت‌تر"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "runner-9060",
+      "name": "Runner 9060",
+      "display": "9060",
+      "fa": "رانر ۹۰۶۰",
+      "category": "رانینگ",
+      "tag": "جدید",
+      "sole": "airbolling",
+      "gender": "unisex",
+      "colors": [
+        {
+          "id": "blue",
+          "name": "آبی خاکستری",
+          "hex": "#9db6d1",
+          "source": "file_00000000be6081f49872c1378b35aa35.png",
+          "image": "assets/products/runner-9060/blue.webp",
+          "imageSm": "assets/products/runner-9060/blue-sm.webp",
+          "w": 1073,
+          "h": 807,
+          "theme": {
+            "bg": "#197564",
+            "bg2": "#052b1c",
+            "accent": "#72ffed",
+            "hue": 0.469
+          },
+          "world": "#1f8f7a"
+        }
+      ],
+      "description": "رانر ضخیم‌زیره با ترکیب مش و جیر و کوسن ایربولینگ در پاشنه؛ استایل استریت با راحتی ورزشی.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.3,
+          "y": 0.88,
+          "lx": 0.05,
+          "ly": 1.05,
+          "t": "زیره ایربولینگ",
+          "d": "کوسن هوا؛ جذب ضربه"
+        },
+        {
+          "k": "mesh",
+          "x": 0.7,
+          "y": 0.62,
+          "lx": 0.95,
+          "ly": 0.25,
+          "t": "مش و جیر",
+          "d": "تهویه بهتر، ظاهر اسپرت"
+        },
+        {
+          "k": "heel",
+          "x": 0.18,
+          "y": 0.62,
+          "lx": -0.03,
+          "ly": 0.86,
+          "t": "پاشنه ایربولینگ",
+          "d": "کوسن هوا؛ جذب ضربه"
+        }
+      ],
+      "sizes": null
+    },
+    {
+      "slug": "propulsion-runner",
+      "name": "Propulsion Runner",
+      "display": "PROPULSION",
+      "fa": "پروپالشن رانر",
+      "category": "رانینگ",
+      "tag": "جدید",
+      "sole": "airbolling",
+      "gender": "men",
+      "colors": [
+        {
+          "id": "black",
+          "name": "مشکی",
+          "hex": "#15171a",
+          "source": "file_00000000cf3c8210b61f96bd146db476.png",
+          "world": "#1a5fd0",
+          "image": "assets/products/propulsion-runner/black.webp",
+          "imageSm": "assets/products/propulsion-runner/black-sm.webp",
+          "w": 920,
+          "h": 928,
+          "theme": {
+            "bg": "#113775",
+            "bg2": "#021a2b",
+            "accent": "#729fff",
+            "hue": 0.603
+          }
+        },
+        {
+          "id": "beige",
+          "name": "بژ",
+          "hex": "#d9c9a8",
+          "source": "file_00000000b7b48210be594a547ce595c6.png",
+          "keep": "largest",
+          "image": "assets/products/propulsion-runner/beige.webp",
+          "imageSm": "assets/products/propulsion-runner/beige-sm.webp",
+          "w": 847,
+          "h": 673,
+          "theme": {
+            "bg": "#75503a",
+            "bg2": "#2b1511",
+            "accent": "#ffaf72",
+            "hue": 0.062
+          },
+          "crop": [
+            0,
+            0.43,
+            1,
+            1
+          ],
+          "features": []
+        }
+      ],
+      "description": "رانر سنگین‌زیره با روکش مش، کوسن ایربولینگ و ثبات بالا برای پیاده‌روی و استفاده روزمره.",
+      "features": [
+        {
+          "k": "sole",
+          "x": 0.5,
+          "y": 0.85,
+          "lx": 0.1,
+          "ly": 1.02,
+          "t": "زیره ایربولینگ",
+          "d": "کوسن هوا؛ جذب ضربه"
+        },
+        {
+          "k": "mesh",
+          "x": 0.78,
+          "y": 0.45,
+          "lx": 1.02,
+          "ly": 0.25,
+          "t": "مش و جیر",
+          "d": "تهویه بهتر، ظاهر اسپرت"
+        },
+        {
+          "k": "tab",
+          "x": 0.22,
+          "y": 0.05,
+          "lx": 0.5,
+          "ly": -0.06,
+          "t": "پاشنه‌کش",
+          "d": "پوشیدن راحت‌تر"
+        }
+      ],
+      "sizes": null
+    }
+  ]
+}
